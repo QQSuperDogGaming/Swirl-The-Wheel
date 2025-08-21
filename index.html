@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chupa-Style Spin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <!-- Left: the wheel -->
+    <section class="stage card">
+      <canvas id="wheel" width="720" height="720" aria-label="Lollipop wheel"></canvas>
+
+      <!-- lollipop stick (pure CSS) -->
+      <div class="stick" aria-hidden="true"></div>
+
+      <!-- pointer -->
+      <div class="pointer" aria-hidden="true">
+        <div class="tick"></div>
+      </div>
+
+      <button id="spinBtn" class="cta">SPIN</button>
+      <p id="result" class="result" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- Right: retro control card -->
+    <section class="controls card">
+      <h1 class="logo">CHUPA STYLE</h1>
+      <p class="tag">“Gíralo y prueba tu suerte”</p>
+
+      <fieldset class="flavors">
+        <legend>SABORES</legend>
+        <!-- You can edit labels or reorder; JS reads data-color -->
+        <label><input type="checkbox" data-color="#F7E04B" checked /> Limón</label>
+        <label><input type="checkbox" data-color="#F39C34" checked /> Naranja</label>
+        <label><input type="checkbox" data-color="#EA4B62" checked /> Fresa</label>
+        <label><input type="checkbox" data-color="#62C7E7" checked /> Cola</label>
+        <label><input type="checkbox" data-color="#2DBE8C" checked /> Menta</label>
+        <label><input type="checkbox" data-color="#FAD8A6" checked /> Flan y nata</label>
+        <label><input type="checkbox" data-color="#6B3F2A" checked /> Chocolate</label>
+        <label><input type="checkbox" data-color="#F76FA7" checked /> Nata y fresa</label>
+      </fieldset>
+
+      <div class="row">
+        <label class="small">
+          Spin Power
+          <input id="power" type="range" min="0.5" max="2.5" step="0.1" value="1.6">
+        </label>
+        <label class="small">
+          Friction
+          <input id="friction" type="range" min="0.985" max="0.9995" step="0.0005" value="0.993">
+        </label>
+      </div>
+
+      <p class="note">Tip: toggle flavors to change the segments instantly. Result = flavor under the pointer at rest.</p>
+    </section>
+  </main>
+
+  <footer class="paper">
+    <small>Inspired by vintage Chupa Chups ads (Dalí era). For study/demo.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
