@@ -3,43 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chupa-Style Spin</title>
+  <title>Swirl The Wheel — sweet decisions</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23F7E04B' stroke='%23201c1a' stroke-width='6'/><text x='50' y='58' font-size='36' text-anchor='middle' fill='%23EA4B62' font-family='Arial,Helvetica,sans-serif'>🍭</text></svg>">
+  <meta name="color-scheme" content="light only">
 </head>
 <body>
+  <header class="brand">
+    <h1>Swirl The Wheel</h1>
+    <p class="sub">Sweet decisions, one satisfying spin.</p>
+  </header>
+
   <main class="wrap">
-    <!-- Left: the wheel -->
+    <!-- Wheel / lollipop -->
     <section class="stage card">
       <canvas id="wheel" width="720" height="720" aria-label="Lollipop wheel"></canvas>
 
-      <!-- lollipop stick (pure CSS) -->
+      <!-- lollipop stick -->
       <div class="stick" aria-hidden="true"></div>
 
-      <!-- pointer -->
-      <div class="pointer" aria-hidden="true">
-        <div class="tick"></div>
-      </div>
+      <!-- pointer at 12 o’clock -->
+      <div class="pointer" aria-hidden="true"><div class="tick"></div></div>
 
-      <button id="spinBtn" class="cta">SPIN</button>
+      <button id="spinBtn" class="cta" aria-label="Spin the wheel">SPIN</button>
       <p id="result" class="result" role="status" aria-live="polite"></p>
     </section>
 
-    <!-- Right: retro control card -->
+    <!-- Controls -->
     <section class="controls card">
-      <h1 class="logo">CHUPA STYLE</h1>
-      <p class="tag">“Gíralo y prueba tu suerte”</p>
+      <h2 class="sec">Choices</h2>
+      <form id="choiceForm" class="choices" autocomplete="off">
+        <input id="choiceInput" type="text" placeholder="Add a choice (e.g., 'Sushi')" />
+        <button class="add" type="submit">Add</button>
+      </form>
+      <ul id="choiceList" class="choice-list"></ul>
+      <div class="row">
+        <button id="clearChoices" class="ghost" type="button">Clear</button>
+        <button id="shuffleChoices" class="ghost" type="button">Shuffle</button>
+      </div>
 
+      <hr class="sep"/>
+
+      <h2 class="sec">Palette (swirl colors)</h2>
       <fieldset class="flavors">
-        <legend>SABORES</legend>
-        <!-- You can edit labels or reorder; JS reads data-color -->
-        <label><input type="checkbox" data-color="#F7E04B" checked /> Limón</label>
-        <label><input type="checkbox" data-color="#F39C34" checked /> Naranja</label>
-        <label><input type="checkbox" data-color="#EA4B62" checked /> Fresa</label>
-        <label><input type="checkbox" data-color="#62C7E7" checked /> Cola</label>
-        <label><input type="checkbox" data-color="#2DBE8C" checked /> Menta</label>
-        <label><input type="checkbox" data-color="#FAD8A6" checked /> Flan y nata</label>
-        <label><input type="checkbox" data-color="#6B3F2A" checked /> Chocolate</label>
-        <label><input type="checkbox" data-color="#F76FA7" checked /> Nata y fresa</label>
+        <legend>Toggle flavors to change the look</legend>
+        <label><input type="checkbox" data-color="#F7E04B" checked> Limón</label>
+        <label><input type="checkbox" data-color="#F39C34" checked> Naranja</label>
+        <label><input type="checkbox" data-color="#EA4B62" checked> Fresa</label>
+        <label><input type="checkbox" data-color="#62C7E7" checked> Cola</label>
+        <label><input type="checkbox" data-color="#2DBE8C" checked> Menta</label>
+        <label><input type="checkbox" data-color="#FAD8A6" checked> Flan y nata</label>
+        <label><input type="checkbox" data-color="#6B3F2A" checked> Chocolate</label>
+        <label><input type="checkbox" data-color="#F76FA7" checked> Nata y fresa</label>
       </fieldset>
 
       <div class="row">
@@ -53,13 +68,22 @@
         </label>
       </div>
 
-      <p class="note">Tip: toggle flavors to change the segments instantly. Result = flavor under the pointer at rest.</p>
+      <p class="note">Result = the choice under the pointer when the wheel stops. Choices are saved locally.</p>
     </section>
   </main>
 
   <footer class="paper">
-    <small>Inspired by vintage Chupa Chups ads (Dalí era). For study/demo.</small>
+    <small>Inspired by vintage Chupa Chups ads. Built for learning.</small>
   </footer>
+
+  <!-- Winner modal -->
+  <div id="winnerModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <h3>Winner!</h3>
+      <p id="winnerText">—</p>
+      <button id="closeModal" class="cta" type="button">OK</button>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
